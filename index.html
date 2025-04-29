@@ -3,95 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srinivash - Front-End Full-Stack Developer</title>
+    <title>[Your Name] - Senior Full-Stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #3b82f6;
+            --secondary: #6366f1;
+            --bg-light: #f9fafb;
+            --text-light: #1f2937;
+            --bg-dark: #1f2937;
+            --text-dark: #e5e7eb;
+        }
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --secondary: #818cf8;
+            --bg-light: #1f2937;
+            --text-light: #e5e7eb;
+            --bg-dark: #111827;
+            --text-dark: #d1d5db;
+        }
         body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .project-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        .scroll-section {
-            scroll-margin-top: 80px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-10">
+    <nav class="bg-white dark:bg-gray-900 shadow-lg fixed w-full z-20" aria-label="Main navigation">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-600">Srinivash</h1>
-            <div class="space-x-6">
-                <a href="#home" class="text-gray-600 hover:text-blue-600">Home</a>
-                <a href="#skills" class="text-gray-600 hover:text-blue-600">Skills</a>
-                <a href="#experience" class="text-gray-600 hover:text-blue-600">Experience</a>
-                <a href="#projects" class="text-gray-600 hover:text-blue-600">Projects</a>
-                <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+            <h1 class="text-2xl font-bold text-primary"> [Your Name]</h1>
+            <div class="flex items-center space-x-6">
+                <a href="#home" class="text-gray-600 dark:text-gray-300 hover:text-primary">Home</a>
+                <a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-primary">Skills</a>
+                <a href="#experience" class="text-gray-600 dark:text-gray-300 hover:text-primary">Experience</a>
+                <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-primary">Projects</a>
+                <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary">Contact</a>
+                <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 focus:outline-none" aria-label="Toggle dark mode">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="sun" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        <path id="moon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9 9 0 0020.354 15.354z" />
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-24 scroll-section">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Srinivash</h1>
-            <p class="text-xl md:text-2xl mb-6">Front-End Full-Stack Developer</p>
-            <p class="text-lg max-w-2xl mx-auto">Building seamless, scalable web applications with 5+ years of expertise in Angular, TypeScript, Node.js, and modern full-stack technologies.</p>
-            <div class="mt-8 flex justify-center space-x-4">
-                <a href="srinivashjk@gmail.com" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Contact Me</a>
-                <a href="https://github.com/SriniVjh/Srinivash.github.io" target="_blank" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">GitHub</a>
-                <a href="https://www.linkedin.com/in/srini-vash-b91591284" target="_blank" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">LinkedIn</a>
+    <section id="home" class="min-h-screen flex items-center bg-gradient-to-r from-primary to-secondary text-white scroll-section">
+        <div class="container mx-auto px-4 text-center animate-on-scroll">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4">[Your Name]</h1>
+            <p class="text-2xl md:text-3xl mb-6">Senior Full-Stack Developer</p>
+            <p class="text-lg max-w-2xl mx-auto mb-8">Crafting scalable, user-centric web applications with 6+ years of expertise in Angular, Node.js, and modern tech stacks.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="mailto:yournewemail@example.com" class="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100" aria-label="Email me">Contact Me</a>
+                <a href="https://github.com/yourgithubusername" target="_blank" class="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100" aria-label="View GitHub profile">GitHub</a>
+                <a href="https://linkedin.com/in/yourlinkedinusername" target="_blank" class="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100" aria-label="View LinkedIn profile">LinkedIn</a>
+                <a href="resume.pdf" download class="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100" aria-label="Download resume">Resume</a>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-white scroll-section">
+    <section id="skills" class="py-20 bg-white dark:bg-gray-900 scroll-section">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Skills</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <h3 class="text-xl font-semibold mb-4">Frontend</h3>
-                    <p class="text-gray-600">Angular, TypeScript, RxJS, NgRx, React, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, SCSS</p>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-on-scroll">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll">
+                <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Frontend</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Angular, TypeScript, RxJS, NgRx, React, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, SCSS</p>
                 </div>
-                <div class="text-center">
-                    <h3 class="text-xl font-semibold mb-4">Backend & Database</h3>
-                    <p class="text-gray-600">Node.js, Express, MongoDB, PostgreSQL, REST APIs, GraphQL</p>
+                <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Backend & Database</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Node.js, Express, MongoDB, PostgreSQL, REST APIs, GraphQL, NestJS</p>
                 </div>
-                <div class="text-center">
-                    <h3 class="text-xl font-semibold mb-4">Tools & Practices</h3>
-                    <p class="text-gray-600">Git, Docker, AWS, Webpack, Jest, Cypress, Agile, TDD, CI/CD</p>
+                <div class="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Tools & Practices</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Git, Docker, AWS, Webpack, Vite, Jest, Cypress, Agile, TDD, CI/CD</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-16 bg-gray-100 scroll-section">
+    <section id="experience" class="py-20 bg-gray-100 dark:bg-gray-800 scroll-section">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Experience</h2>
-            <div class="space-y-8">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold">Junior Full-Stack Developer</h3>
-                    <p class="text-gray-600">VJH Software Solutions | Oct 2018 - May 2019</p>
-                    <ul class="list-disc list-inside mt-4 text-gray-600">
-                        <li>Developed full-stack VB.net and SQL Window Applications.</li>
-                        <li>Created Crystal Reports For Zone Wise in Aavin Co-Operative Milk Contains (Madurai South Zone)<li>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-on-scroll">Experience</h2>
+            <div class="space-y-8 animate-on-scroll">
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Senior Full-Stack Developer</h3>
+                    <p class="text-gray-600 dark:text-gray-300">[Company Name] | Feb 2020 - Present</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600 dark:text-gray-300">
+                        <li>Architected full-stack Angular and Node.js applications, reducing API latency by 30% with GraphQL optimizations.</li>
+                        <li>Leveraged NgRx for state management, enhancing scalability and reducing bugs by 20%.</li>
+                        <li>Designed MongoDB schemas and Express APIs, supporting 10,000+ daily users.</li>
+                        <li>Led Agile teams, mentoring 3 developers in TypeScript and RxJS best practices.</li>
                     </ul>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold">Senior Front-End Developer</h3>
-                    <p class="text-gray-600">VJH Software Solutions | Aug 2019 - Present</p>
-                    <ul class="list-disc list-inside mt-4 text-gray-600">
-                        <li>Built responsive Angular dashboards integrated with REST APIs, boosting user engagement by 25%.</li>
-                        <li>Optimized front-end performance with lazy loading and RxJS, cutting load times by 35%.</li>
-                        <li>Wrote unit tests with Jest and Cypress, achieving 90% code coverage.</li>
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Front-End Developer</h3>
+                    <p class="text-gray-600 dark:text-gray-300">[Previous Company Name] | Jul 2018 - Jan 2020</p>
+                    <ul class="list-disc list-inside mt-4 text-gray-600 dark:text-gray-300">
+                        <li>Developed responsive Angular dashboards with REST API integrations, boosting engagement by 25%.</li>
+                        <li>Optimized performance using RxJS and lazy loading, cutting load times by 35%.</li>
+                        <li>Implemented Jest and Cypress tests, achieving 90% code coverage.</li>
                     </ul>
                 </div>
             </div>
@@ -99,50 +134,103 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16 bg-white scroll-section">
+    <section id="projects" class="py-20 bg-white dark:bg-gray-900 scroll-section">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card bg-gray-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-2">E-Commerce Platform</h3>
-                    <p class="text-gray-600 mb-4">A full-stack e-commerce app with Angular frontend and Node.js/Express backend, featuring real-time inventory and Stripe payments.</p>
-                    <p class="text-gray-500 text-sm mb-4"><strong>Tech:</strong> Angular, Node.js, Express, MongoDB, Stripe, AWS</p>
-                    <a href="https://github.com/yourusername/ecommerce" target="_blank" class="text-blue-600 font-semibold hover:underline">View on GitHub</a>
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white animate-on-scroll">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll">
+                <div class="project-card bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <img src="images/ecommerce.jpg" alt="E-Commerce Platform" class="w-full h-48 object-cover rounded-t-lg mb-4 lazy" loading="lazy">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">E-Commerce Platform</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">A full-stack app with Angular frontend and Node.js/Express backend, featuring real-time inventory and Stripe payments.</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-4"><strong>Tech:</strong> Angular, Node.js, Express, MongoDB, Stripe, AWS</p>
+                    <a href="https://github.com/yourgithubusername/ecommerce" target="_blank" class="text-primary font-semibold hover:underline" aria-label="View E-Commerce Platform on GitHub">View on GitHub</a>
                 </div>
-                <div class="project-card bg-gray-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-2">Task Management App</h3>
-                    <p class="text-gray-600 mb-4">A full-stack task manager with Angular, RxJS, and Node.js, supporting real-time collaboration via WebSockets.</p>
-                    <p class="text-gray-500 text-sm mb-4"><strong>Tech:</strong> Angular, RxJS, Node.js, PostgreSQL, WebSockets</p>
-                    <a href="https://github.com/yourusername/task-app" target="_blank" class="text-blue-600 font-semibold hover:underline">View on GitHub</a>
+                <div class="project-card bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <img src="images/task-app.jpg" alt="Task Management App" class="w-full h-48 object-cover rounded-t-lg mb-4 lazy" loading="lazy">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Task Management App</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">A scalable app with Angular and Node.js, supporting real-time collaboration via WebSockets.</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-4"><strong>Tech:</strong> Angular, RxJS, Node.js, PostgreSQL, WebSockets</p>
+                    <a href="https://github.com/yourgithubusername/task-app" target="_blank" class="text-primary font-semibold hover:underline" aria-label="View Task Management App on GitHub">View on GitHub</a>
                 </div>
-                <div class="project-card bg-gray-50 p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-semibold mb-2">Portfolio Website</h3>
-                    <p class="text-gray-600 mb-4">This modern portfolio showcasing full-stack expertise, built with Tailwind CSS and vanilla JavaScript.</p>
-                    <p class="text-gray-500 text-sm mb-4"><strong>Tech:</strong> HTML, Tailwind CSS, JavaScript</p>
-                    <a href="https://github.com/yourusername/portfolio" target="_blank" class="text-blue-600 font-semibold hover:underline">View on GitHub</a>
+                <div class="project-card bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <img src="images/portfolio.jpg" alt="Portfolio Website" class="w-full h-48 object-cover rounded-t-lg mb-4 lazy" loading="lazy">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">Portfolio Website</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">This advanced portfolio showcasing full-stack expertise with a modern UI.</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-4"><strong>Tech:</strong> HTML, Tailwind CSS, JavaScript, GSAP</p>
+                    <a href="https://github.com/yourgithubusername/portfolio" target="_blank" class="text-primary font-semibold hover:underline" aria-label="View Portfolio Website on GitHub">View on GitHub</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gradient-to-r from-blue-500 to-indigo-500 text-white scroll-section">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
-            <p class="text-lg mb-8 max-w-2xl mx-auto">Interested in collaborating or discussing opportunities? Let’s connect!</p>
-            <a href="srinivashjk@gmail.com" class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-200">Email Me</a>
+    <section id="contact" class="py-20 bg-gradient-to-r from-primary to-secondary text-white scroll-section">
+        <div class="container mx-auto px-4 text-center animate-on-scroll">
+            <h2 class="text-4xl font-bold mb-6">Get in Touch</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">Ready to collaborate on innovative projects? Let’s connect!</p>
+            <div class="flex justify-center space-x-4">
+                <a href="mailto:yournewemail@example.com" class="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100" aria-label="Email me">Email Me</a>
+                <a href="resume.pdf" download class="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-gray-100" aria-label="Download resume">Resume</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
+    <footer class="bg-gray-900 text-white py-6">
         <div class="container mx-auto px-4 text-center">
-            <p>© 2025. All rights reserved.</p>
+            <p>© 2025 [Your Name]. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scroll for anchor links
+        // Theme Toggle
+        const toggleButton = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun');
+        const moonIcon = document.getElementById('moon');
+        toggleButton.addEventListener('click', () => {
+            document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+            localStorage.setItem('theme', document.documentElement.dataset.theme);
+        });
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.dataset.theme = 'dark';
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        }
+
+        // Scroll Animations
+        gsap.utils.toArray('.animate-on-scroll').forEach(el => {
+            gsap.fromTo(el, 
+                { opacity: 0, y: 20 }, 
+                { 
+                    opacity: 1, 
+                    y: 0, 
+                    duration: 0.8, 
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // Lazy Load Images
+        const lazyImages = document.querySelectorAll('img.lazy');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src || img.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
+        });
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
